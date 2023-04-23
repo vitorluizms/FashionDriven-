@@ -287,6 +287,25 @@ left: 122px;
 
     margin-right: 17px;
     border-radius: 10px;
+    padding-left: 11px;
+    
 
     background-color: #ffffff;
+}
+.shirtArea img {
+    width: 192px;
+    height: 195px;
+}
+.shirtArea strong {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 23px;
+}
+.shirtArea p {
+    font-family: 'Roboto, sans-serif';
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 23px;
+    text-align: center;
 }
