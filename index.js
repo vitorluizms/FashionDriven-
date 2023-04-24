@@ -2,7 +2,7 @@ axios.defaults.headers.common['Authorization'] = 'UyFdKh3ePjzKZlAEacL7QBdd';
 
 const selectItem = (item, tipo) => {
     const itemSelected = document.querySelector(`${tipo} .itemSelected`);
-    console.log(itemSelected)
+    console.log(item)
     if (itemSelected !== null) {
         itemSelected.classList.remove('itemSelected')
     }
