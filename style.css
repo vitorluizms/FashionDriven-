@@ -64,8 +64,9 @@ body {
     position: relative;
     top: 38px;
     left: 122px;
+    margin-bottom: 20px;
 }
-.shirts, .collar, .tissue h2 {
+.shirts h2 {
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
     font-weight: 400;
@@ -83,7 +84,7 @@ body {
     display: flex;
     justify-content: space-between;
 }
-.model {
+.model, .collar, .tissue {
     width: 100px;
     height: 130px;
 
@@ -98,7 +99,7 @@ body {
     overflow: hidden;
     background-color: #c4c4c4;
 }
-.model p {
+.model, .collar, .tissue p {
     font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
@@ -110,7 +111,7 @@ body {
     margin-top: 8px;
 }
 
-.collar, .tissue {
+/* .collar, .tissue {
 width: 385px;
 height: 159px;
 margin-top: 31px;
@@ -118,7 +119,7 @@ margin-top: 31px;
 position: relative;
 top: 38px;
 left: 122px;
-}
+} */
 
 .reference {
     width: 396px;
@@ -129,7 +130,7 @@ left: 122px;
     justify-content: space-between;
 
     position: relative;
-    top: 65px;
+    top: 45px;
     left: 122px;
 }
 .reference h3 {
@@ -156,13 +157,12 @@ left: 122px;
     color: #818181;
 }
 
-.confirmBtn {
+.confirmBtn, .confirmBtn1 {
     width: 398px;
     height: 40px;
 
-    position: relative;
-    top: 90px;
-    left: 122px;
+    margin-top: 70px;
+    margin-left: 122px;
 
     border-radius: 10px;
     background-color: #c4c4c4;
@@ -170,8 +170,12 @@ left: 122px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: none;
 }
-.confirmBtn h4 {
+.hidden {
+    display: none;
+}
+.confirmBtn h4, .confirmBtn1 h4 {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 20px;
@@ -320,4 +324,7 @@ left: 122px;
 }
 .itemSelected {
     border: 3px solid #404eed
+}
+.confirmSelected {
+    background-color: #404eed;
 }

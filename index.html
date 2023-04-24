@@ -25,67 +25,67 @@
                     <h2>Escolha o modelo</h2>
                     <div class="containerShirt">
                         <div class="model">
-                            <button onclick="selectItem(this)" class="space">
+                            <button onclick="selectItem(this, '.model')" class="space">
                                 <img src="./imagens/tshirt.png" alt="">
-                            </button onclick="selectItem(this)">
+                            </button>
                             <p>T-shirt</p>
                         </div>
                         <div class="model">
-                            <button onclick="selectItem(this)" class="space">
+                            <button onclick="selectItem(this, '.model')" class="space">
                                 <img src="./imagens/Camiseta.png" alt="">
-                            </button onclick="selectItem(this)">
+                            </button>
                             <p>Camiseta</p>
                         </div>
                         <div class="model">
-                            <button onclick="selectItem(this)" class="space">
+                            <button onclick="selectItem(this, '.model')" class="space">
                                 <img src="./imagens/Mangalonga.png" alt="">
-                            </button onclick="selectItem(this)">
+                            </button>
                             <p>Manga longa</p>
                         </div>
                     </div>
                 </div>
-                <div class="collar">
+                <div class="shirts">
                     <h2>Escolha a gola</h2>
                     <div class="containerShirt">
-                        <div class="model">
-                            <button onclick="selectItem(this)" class="space">
+                        <div class="collar">
+                            <button onclick="selectItem(this, '.collar')" class="space">
                                 <img src="./imagens/GolaV.png" alt="">
-                            </button onclick="selectItem(this)">
+                            </button>
                             <p>Gola V</p>
                         </div>
-                        <div class="model">
-                            <button onclick="selectItem(this)" class="space">
+                        <div class="collar">
+                            <button onclick="selectItem(this, '.collar')" class="space">
                                 <img src="./imagens/GolaRedonda.png" alt="">
-                            </button onclick="selectItem(this)">
+                            </button>
                             <p>Gola redonda</p>
                         </div>
-                        <div class="model">
-                            <button onclick="selectItem(this)" class="space">
+                        <div class="collar">
+                            <button onclick="selectItem(this, '.collar')" class="space">
                                 <img src="./imagens/GolaPolo.png" alt="">
-                            </button onclick="selectItem(this)">
+                            </button>
                             <p>Gola Polo</p>
                         </div>
                     </div>
                 </div>
-                <div class="tissue">
+                <div class="shirts">
                     <h2>Escolha o tecido</h2>
                     <div class="containerShirt">
-                        <div class="model">
-                            <button onclick="selectItem(this)" class="space">
+                        <div class="tissue">
+                            <button onclick="selectItem(this, '.tissue')" class="space">
                                 <img src="./imagens/Seda.png" alt="">
-                            </button onclick="selectItem(this)">
+                            </button>
                             <p>Seda</p>
                         </div>
-                        <div class="model">
-                            <button onclick="selectItem(this)" class="space">
+                        <div class="tissue">
+                            <button onclick="selectItem(this, '.tissue')" class="space">
                                 <img src="./imagens/Algodão.png" alt="">
-                            </button onclick="selectItem(this)">
+                            </button>
                             <p>Algodão</p>
                         </div>
-                        <div class="model">
-                            <button onclick="selectItem(this)" class="space">
+                        <div class="tissue">
+                            <button onclick="selectItem(this, '.tissue')" class="space">
                                 <img src="./imagens/Poliester.png" alt="">
-                            </button onclick="selectItem(this)">
+                            </button>
                             <p>Poliéster</p>
                         </div>
                     </div>
@@ -94,9 +94,12 @@
                     <h3>Imagem de referência</h3>
                     <input type="text" name="imgReference" placeholder="Insira o link">
                 </div>
-                <div class="confirmBtn">
+                <button class="confirmBtn">
                     <h4>Confirmar pedido</h4>
-                </div>
+                </button>
+                <button class="confirmBtn1 hidden" onclick="confirmOrder('.model', '.collar', '.tissue')" >
+                    <h4>Confirmar pedido</h4>
+                </button>
             </div>
             <div class="rightContent">
                 <img src="./imagens/ilustração.png" alt="ilustração">

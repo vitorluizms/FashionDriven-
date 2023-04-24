@@ -1,15 +1,30 @@
 axios.defaults.headers.common['Authorization'] = 'UyFdKh3ePjzKZlAEacL7QBdd';
 
-const selectItem = (item) => {
-    const itemSelected = document.querySelector('.itemSelected');
+const selectItem = (item, tipo) => {
+    const itemSelected = document.querySelector(`${tipo} .itemSelected`);
     console.log(itemSelected)
     if (itemSelected !== null) {
         itemSelected.classList.remove('itemSelected')
     }
     item.classList.add('itemSelected')
+    confirmBtn(`.model`, `.collar`, `.tissue`)
 }
 
-
+const confirmBtn = (tipo1, tipo2, tipo3) => {
+    const grupo1 = document.querySelector(`${tipo1} .itemSelected`);
+    const grupo2 = document.querySelector(`${tipo2} .itemSelected`);
+    const grupo3 = document.querySelector(`${tipo3} .itemSelected`);
+    console.log(tipo1)
+    console.log(tipo2)
+    console.log(tipo3)
+    if (grupo1 && grupo2 && grupo3) {
+        const add = document.querySelector('.confirmBtn1');
+        add.classList.add('confirmSelected')
+        add.classList.remove('hidden')
+        const remove = document.querySelector('.confirmBtn')
+        remove.classList.add('hidden')
+    }
+}
 
 
 
