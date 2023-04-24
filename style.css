@@ -229,7 +229,8 @@ left: 122px;
 
     border-radius: 10px;
     padding-top: 7px;
-    background-color: #404eed;
+    border: none;
+    background-color: #c4c4c4;
 }
 .filterText {
     font-family: 'Roboto', sans-serif;
@@ -248,6 +249,7 @@ left: 122px;
     border-radius: 10px;
     padding-top: 7px;
     background-color: #c4c4c4;
+    border: none;
 }
 
 .shirt {
@@ -257,6 +259,7 @@ left: 122px;
     border-radius: 10px;
     padding-top: 7px;
     background-color: #c4c4c4;
+    border: none;
 }
 
 .long {
@@ -266,10 +269,12 @@ left: 122px;
     border-radius: 10px;
     padding-top: 7px;
     background-color: #c4c4c4;
+    border: none;
 }
 
 .shirtArea {
-    width: 1150px;
+    min-width: auto;
+    max-width: 1150px;
     height: 257px;
 
     position: absolute;
@@ -308,4 +313,8 @@ left: 122px;
     font-size: 23px;
     line-height: 23px;
     text-align: center;
+}
+
+.filterSelected {
+    background-color: #404eed;
 }
