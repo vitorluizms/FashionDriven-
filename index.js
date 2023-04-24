@@ -1,4 +1,21 @@
 axios.defaults.headers.common['Authorization'] = 'UyFdKh3ePjzKZlAEacL7QBdd';
+
+const selectItem = (item) => {
+    const itemSelected = document.querySelector('.itemSelected');
+    console.log(itemSelected)
+    if (itemSelected !== null) {
+        itemSelected.classList.remove('itemSelected')
+    }
+    item.classList.add('itemSelected')
+}
+
+
+
+
+
+
+
+
 const getPromise = () => {
     const promise = axios.get('https://mock-api.driven.com.br/api/v4/shirts-api/shirts')
     promise.then(renderModels)

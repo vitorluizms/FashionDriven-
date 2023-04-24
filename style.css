@@ -304,17 +304,20 @@ left: 122px;
 .shirtArea strong {
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 23px;
 }
 .shirtArea p {
     font-family: 'Roboto, sans-serif';
     font-weight: 400;
-    font-size: 23px;
+    font-size: 20px;
     line-height: 23px;
     text-align: center;
 }
 
 .filterSelected {
     background-color: #404eed;
+}
+.itemSelected {
+    border: 3px solid #404eed
 }
