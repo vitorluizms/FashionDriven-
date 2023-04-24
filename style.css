@@ -94,10 +94,10 @@ body {
     width: 100px;
     height: 100px;
 
-    border: none;
+    border: 0.5px solid #c4c4c4;
     border-radius: 100px;
     overflow: hidden;
-    background-color: #c4c4c4;
+    background-color: #F2F2F2;
 }
 .model, .collar, .tissue p {
     font-family: 'Roboto', sans-serif;

@@ -34,6 +34,7 @@ const confirmBtn = (tipo1, tipo2, tipo3) => {
 const getPromise = () => {
     const promise = axios.get('https://mock-api.driven.com.br/api/v4/shirts-api/shirts')
     promise.then(renderModels)
+    console.log(promise)
 
     const searchSelected = document.querySelector('.filterSelected')
     if (searchSelected !== null) {
@@ -42,6 +43,7 @@ const getPromise = () => {
     const filterAll = document.querySelector('.allModels')
     filterAll.classList.add('filterSelected')
 }
+
 let arrayModels = [];
 const renderModels = (allModels) => {
     
@@ -144,4 +146,13 @@ const filterLong = (tShirts) => {
         }
     }
 }
-getPromise2()
+// const test = () => {
+//     const name = document.querySelector('.linkImg')
+//     if (name.value === '') {
+//         console.log('mt bem')
+//     }
+//     else {
+//         console.log('oh não')
+//     }
+// } 
+getPromise()
