@@ -1,8 +1,21 @@
 axios.defaults.headers.common["Authorization"] = "UyFdKh3ePjzKZlAEacL7QBdd";
+let user = prompt('Digite o seu nome:')
+while (user.length > '24' || user === '') {
+    user = prompt('Digite um nome válido:')
+}
+
+console.log(user)
+const showUser = () => {
+    const rightHeader = document.querySelector('.rightHeader');
+    rightHeader.innerHTML += `
+    <p> Olá, <strong>${user}<strong></p>`
+    getPromise();
+}
+
+
 const x = document.querySelector(".linkImg");
 const selectItem = (item, tipo) => {
   const itemSelected = document.querySelector(`${tipo} .itemSelected`);
-  console.log(item);
   if (itemSelected !== null) {
     itemSelected.classList.remove("itemSelected");
   }
@@ -12,6 +25,7 @@ const selectItem = (item, tipo) => {
 const confirmBtn = (tipo1, tipo2, tipo3) => {
 x.addEventListener("change", (event) => {
   const grupo1 = document.querySelector(`${tipo1} .itemSelected`);
+  console.log(tipo1)
   const grupo2 = document.querySelector(`${tipo2} .itemSelected`);
   const grupo3 = document.querySelector(`${tipo3} .itemSelected`);
     if (grupo1 && grupo2 && grupo3 && event.target.value !== undefined) {
@@ -160,4 +174,5 @@ const filterLong = (tShirts) => {
 //         console.log('oh não')
 //     }
 // }
-getPromise();
+
+showUser()

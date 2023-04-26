@@ -39,9 +39,26 @@ body {
 
     position: absolute;
     right: 53px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     background-color: #D9D9D9;
 }
+.rightHeader p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    line-height: 21px;
+    font-weight: 400;
+    text-align: center;
+}
+.rightHeader strong {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    line-height: 21px;
+    font-weight: 700;
+}
+
 
 .content {
     width: 100%;
