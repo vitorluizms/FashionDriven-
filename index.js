@@ -4,7 +4,7 @@ while (user.length > '24' || user === '') {
     user = prompt('Digite um nome válido:')
 }
 
-console.log(user)
+
 const showUser = () => {
     const rightHeader = document.querySelector('.rightHeader');
     rightHeader.innerHTML += `
@@ -23,11 +23,13 @@ const selectItem = (item, tipo) => {
   confirmBtn(`.model`, `.collar`, `.tissue`);
 };
 const confirmBtn = (tipo1, tipo2, tipo3) => {
-x.addEventListener("change", (event) => {
+x.addEventListener("input", (event) => {
+    let receive = event.data;
   const grupo1 = document.querySelector(`${tipo1} .itemSelected`);
-  console.log(tipo1)
+
   const grupo2 = document.querySelector(`${tipo2} .itemSelected`);
   const grupo3 = document.querySelector(`${tipo3} .itemSelected`);
+  console.log(event.target.value)
     if (grupo1 && grupo2 && grupo3 && event.target.value !== undefined) {
         const add = document.querySelector(".confirmBtn1");
         add.classList.add("confirmSelected");
@@ -35,6 +37,13 @@ x.addEventListener("change", (event) => {
         const remove = document.querySelector(".confirmBtn");
         remove.classList.add("hidden");
       }
+      if (grupo1 && grupo2 && grupo3 && event.target.value === undefined || event.target.value === '') {
+        const add1 = document.querySelector(".confirmBtn1");
+        add1.classList.remove("confirmSelected");
+        add1.classList.add ("hidden");
+        const remove1 = document.querySelector(".confirmBtn");
+        remove1.classList.remove("hidden");
+    }
     });
 }
     
@@ -51,7 +60,6 @@ const getPromise = () => {
     "https://mock-api.driven.com.br/api/v4/shirts-api/shirts"
   );
   promise.then(renderModels);
-  console.log(promise);
 
   const searchSelected = document.querySelector(".filterSelected");
   if (searchSelected !== null) {
