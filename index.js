@@ -1,17 +1,15 @@
 axios.defaults.headers.common["Authorization"] = "UyFdKh3ePjzKZlAEacL7QBdd";
-let user = prompt('Digite o seu nome:')
-while (user.length > '24' || user === '') {
-    user = prompt('Digite um nome válido:')
+let user = prompt("Digite o seu nome:");
+while (user.length > "24" || user === "") {
+  user = prompt("Digite um nome válido:");
 }
 
 
 const showUser = () => {
-    const rightHeader = document.querySelector('.rightHeader');
-    rightHeader.innerHTML += `
-    <p> Olá, <strong>${user}<strong></p>`
-    getPromise();
-}
-
+  const rightHeader = document.querySelector(".rightHeader");
+  rightHeader.innerHTML += `
+    <p> Olá, <strong>${user}<strong></p>`;
+};
 
 const x = document.querySelector(".linkImg");
 const selectItem = (item, tipo) => {
@@ -20,40 +18,134 @@ const selectItem = (item, tipo) => {
     itemSelected.classList.remove("itemSelected");
   }
   item.classList.add("itemSelected");
-  confirmBtn(`.model`, `.collar`, `.tissue`);
-};
-const confirmBtn = (tipo1, tipo2, tipo3) => {
-x.addEventListener("input", (event) => {
-    let receive = event.data;
-  const grupo1 = document.querySelector(`${tipo1} .itemSelected`);
 
-  const grupo2 = document.querySelector(`${tipo2} .itemSelected`);
-  const grupo3 = document.querySelector(`${tipo3} .itemSelected`);
-  console.log(event.target.value)
-    if (grupo1 && grupo2 && grupo3 && event.target.value !== undefined) {
-        const add = document.querySelector(".confirmBtn1");
-        add.classList.add("confirmSelected");
-        add.classList.remove("hidden");
-        const remove = document.querySelector(".confirmBtn");
-        remove.classList.add("hidden");
-      }
-      if (grupo1 && grupo2 && grupo3 && event.target.value === undefined || event.target.value === '') {
-        const add1 = document.querySelector(".confirmBtn1");
-        add1.classList.remove("confirmSelected");
-        add1.classList.add ("hidden");
-        const remove1 = document.querySelector(".confirmBtn");
-        remove1.classList.remove("hidden");
-    }
-    });
+  confirmBtn(`.model`, `.collar`, `.tissue`);
+  
+  const model = document.querySelector(".model .itemSelected");
+  const collar = document.querySelector(".collar .itemSelected");
+  const tissue = document.querySelector(".tissue .itemSelected");
+  if (model !== null && collar !== null && tissue !== null && x.value !== '') {
+    sendBody(model.id, collar.id, tissue.id)
+  }
+  console.log('oi')
+};
+
+const sendBody = (model, collar, tissue) => {
+  let modelType;
+  let collarType;
+  let tissueType;
+  if (model == 1) {
+    modelType = 't-shirt'
+  }
+  if (model == 2) {
+    modelType = 'top-tank'
+  }
+  if (model == 3) {
+    modelType = 'long'
+  }
+  if (collar == 4) {
+    collarType = 'v-neck'
+  }
+  if (collar == 5) {
+    collarType = 'round'
+  }
+  if (collar == 6) {
+    collarType = 'polo'
+  }
+  if (tissue == 7) {
+    tissueType = 'silk'
+  }
+  if (tissue == 8) {
+    tissueType = 'cottom'
+  }
+  if (tissue == 9) {
+    tissueType = 'polyester'
+  }
+  const input = document.querySelector('.linkImg')
+  const inputValue = input.value
+  
+  let body = {
+    'model': modelType,
+    'neck': collarType,
+    'material': tissueType,
+    'image': inputValue,
+    'owner': user,
+    'author': user
+  };
+  sendPromise(body)
+};
+
+const sendPromise = (body) => {
+  const promise = axios.post('https://mock-api.driven.com.br/api/v4/shirts-api/shirts', body)
+  // promise.then(successPromise)
 }
-    
-//   if (grupo1 && grupo2 && grupo3 && z[0] !== undefined) {
-//     const add = document.querySelector(".confirmBtn1");
-//     add.classList.add("confirmSelected");
-//     add.classList.remove("hidden");
-//     const remove = document.querySelector(".confirmBtn");
-//     remove.classList.add("hidden");
-//   }
+
+const successPromise = () => {
+  const leftHidden = document.querySelectorAll('.shirts')
+  const buttonBlue = document.querySelector('.confirmBtn1')
+  buttonBlue.classList.add('hidden')
+  for (let i=0; i<leftHidden.length; i++){
+    leftHidden[i].classList.add('hidden')
+  }
+  const referenceHidden = document.querySelector('.reference')
+  const buttonHidden = document.querySelector('.confirmBtn')
+  referenceHidden.classList.add('hidden')
+  buttonHidden.classList.add('hidden')
+  const successContent = document.querySelector('.leftContent')
+  
+  successContent.innerHTML += `
+    <div class="successContent">
+      <h5>Pedido feito com sucesso!</h5>
+      <img src="./imagens/Seda.png" alt="">
+      <h6>Voltando para a página</h6>
+      <h6> principal em 10s</h6>
+    </div>`
+  setTimeout(finishSuccess, 10000);
+}
+
+const finishSuccess = () => {
+  const successHidden = document.querySelector('.successContent').remove()
+  const leftHidden = document.querySelectorAll('.shirts')
+  for (let i=0; i<leftHidden.length; i++){
+    leftHidden[i].classList.remove('hidden')
+  }
+  const referenceHidden = document.querySelector('.reference')
+  const buttonHidden = document.querySelector('.confirmBtn')
+  referenceHidden.classList.remove('hidden')
+  buttonHidden.classList.remove('hidden')
+  // location.reload()
+}
+
+const confirmBtn = (tipo1, tipo2, tipo3) => {
+  console.log('ola')
+  const x = document.querySelector(".linkImg");
+  x.addEventListener("input", (event) => {
+    console.log('a')
+    const grupo1 = document.querySelector(`${tipo1} .itemSelected`);
+    console.log(grupo1)
+    const grupo2 = document.querySelector(`${tipo2} .itemSelected`);
+    console.log(grupo2)
+    const grupo3 = document.querySelector(`${tipo3} .itemSelected`);
+    console.log(grupo3)
+    console.log(event.target.value)
+    if (grupo1 && grupo2 && grupo3 && event.target.value !== undefined) {
+      const add = document.querySelector(".confirmBtn1");
+      add.classList.add("confirmSelected");
+      add.classList.remove("hidden");
+      const remove = document.querySelector(".confirmBtn");
+      remove.classList.add("hidden");
+    }
+    if (
+      (grupo1 && grupo2 && grupo3 && event.target.value === undefined) ||
+      event.target.value === "") {
+      const add1 = document.querySelector(".confirmBtn1");
+      add1.classList.remove("confirmSelected");
+      add1.classList.add("hidden");
+      const remove1 = document.querySelector(".confirmBtn");
+      remove1.classList.remove("hidden");
+    }
+  });
+};
 
 const getPromise = () => {
   const promise = axios.get(
@@ -173,14 +265,6 @@ const filterLong = (tShirts) => {
     }
   }
 };
-// const test = () => {
-//     const name = document.querySelector('.linkImg')
-//     if (name.value === '') {
-//         console.log('mt bem')
-//     }
-//     else {
-//         console.log('oh não')
-//     }
-// }
-
-showUser()
+showUser();
+getPromise();
+successPromise()
