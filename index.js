@@ -20,17 +20,45 @@ const selectItem = (item, tipo) => {
   item.classList.add("itemSelected");
 
   const model = document.querySelector(".model .itemSelected");
-  console.log(model);
   const collar = document.querySelector(".collar .itemSelected");
-  console.log(collar);
   const tissue = document.querySelector(".tissue .itemSelected");
-  console.log(tissue);
   if (model !== null && collar !== null && tissue !== null) {
     confirmBtn(model, collar, tissue);
   }
   if (model !== null && collar !== null && tissue !== null && x.value !== "") {
     sendBody(model.id, collar.id, tissue.id, model, collar, tissue);
   }
+};
+
+const confirmBtn = (tipo1, tipo2, tipo3) => {
+  const x = document.querySelector(".linkImg");
+  x.addEventListener("input", (event) => {
+    if (
+      tipo1 !== null &&
+      tipo2 !== null &&
+      tipo3 !== null &&
+      event.target.value !== undefined
+    ) {
+      const add = document.querySelector(".confirmBtn1");
+      add.classList.add("confirmSelected");
+      add.classList.remove("hidden");
+      const remove = document.querySelector(".confirmBtn");
+      remove.classList.add("hidden");
+    }
+    if (
+      tipo1 === null ||
+      tipo2 === null ||
+      tipo3 === null ||
+      event.target.value === undefined ||
+      event.target.value === ""
+    ) {
+      const add1 = document.querySelector(".confirmBtn1");
+      add1.classList.remove("confirmSelected");
+      add1.classList.add("hidden");
+      const remove1 = document.querySelector(".confirmBtn");
+      remove1.classList.remove("hidden");
+    }
+  });
 };
 
 const sendBody = (model, collar, tissue) => {
@@ -79,12 +107,11 @@ const sendBody = (model, collar, tissue) => {
 };
 
 const sendPromise = (body) => {
-  console.log(body);
   const promise = axios.post(
     "https://mock-api.driven.com.br/api/v4/shirts-api/shirts",
     body
   );
-  promise.then(successPromise);
+  promise.then(successPromise(body.image));
   promise.catch(errorPromise);
 };
 
@@ -97,16 +124,26 @@ const errorPromise = () => {
   }
   const referenceHidden = document.querySelector(".reference");
   const buttonHidden = document.querySelector(".confirmBtn");
+  const successDiv = document.querySelector(".successContent");
+  const successDiv2 = document.querySelector(".successContent h5");
+  const successDiv3 = document.querySelector(".successContent img");
+  const successDiv4 = document.querySelector(".successContent h6");
+  const successDiv5 = document.querySelector(".successContent p");
+  console.log(successDiv);
+  successDiv.classList.add("escondido");
+  successDiv2.classList.add("hidden");
+  successDiv3.classList.add("hidden");
+  successDiv4.classList.add("hidden");
+  successDiv5.classList.add("hidden");
   referenceHidden.classList.add("hidden");
   buttonHidden.classList.add("hidden");
   const errorContent = document.querySelector(".leftContent");
-
   errorContent.innerHTML += `
   <div class = "errorContent">
     <h5>Algo deu errado</h5>
     <h6>Um passarinho me contou que a</h6>
     <h6>imagem não é válida. Tente novamente!</h6>
-    <img src="./imagens/image1.svg" alt="errrorImage">
+    <img src="./imagens/image1.svg" alt="errorImage">
     <h6>Voltando para a página</h6>
     <h6>principal em 10s</h6>
   </div>`;
@@ -114,7 +151,7 @@ const errorPromise = () => {
   setTimeout(finishError, 10000);
 };
 
-const successPromise = () => {
+const successPromise = (image) => {
   const leftHidden = document.querySelectorAll(".shirts");
   const buttonBlue = document.querySelector(".confirmBtn1");
   buttonBlue.classList.add("hidden");
@@ -130,9 +167,9 @@ const successPromise = () => {
   successContent.innerHTML += `
     <div class="successContent">
       <h5>Pedido feito com sucesso!</h5>
-      <img src="./imagens/Seda.png" alt="sucessImage">
+      <img src="${image}" alt="sucessImage">
       <h6>Voltando para a página</h6>
-      <h6> principal em 10s</h6>
+      <p> principal em 10s</>
     </div>`;
   setTimeout(finishSuccess, 10000);
 };
@@ -148,7 +185,6 @@ const finishSuccess = () => {
   const buttonHidden = document.querySelector(".confirmBtn");
   referenceHidden.classList.remove("hidden");
   buttonHidden.classList.remove("hidden");
-  // location.reload()
 };
 
 const finishError = () => {
@@ -161,43 +197,6 @@ const finishError = () => {
   const buttonHidden = document.querySelector(".confirmBtn");
   referenceHidden.classList.remove("hidden");
   buttonHidden.classList.remove("hidden");
-  // selectItem()
-  // location.reload()
-};
-
-const confirmBtn = (tipo1, tipo2, tipo3) => {
-  const x = document.querySelector(".linkImg");
-  x.addEventListener("input", (event) => {
-    console.log(tipo1);
-    console.log(tipo2);
-    console.log(tipo3);
-    console.log(event.target.value);
-    if (
-      tipo1 !== null &&
-      tipo2 !== null &&
-      tipo3 !== null &&
-      event.target.value !== undefined
-    ) {
-      const add = document.querySelector(".confirmBtn1");
-      add.classList.add("confirmSelected");
-      add.classList.remove("hidden");
-      const remove = document.querySelector(".confirmBtn");
-      remove.classList.add("hidden");
-    }
-    if (
-      tipo1 === null ||
-      tipo2 === null ||
-      tipo3 === null ||
-      event.target.value === undefined ||
-      event.target.value === ""
-    ) {
-      const add1 = document.querySelector(".confirmBtn1");
-      add1.classList.remove("confirmSelected");
-      add1.classList.add("hidden");
-      const remove1 = document.querySelector(".confirmBtn");
-      remove1.classList.remove("hidden");
-    }
-  });
 };
 
 const getPromise = () => {
@@ -205,7 +204,6 @@ const getPromise = () => {
     "https://mock-api.driven.com.br/api/v4/shirts-api/shirts"
   );
   promise.then(renderModels);
-  console.log(promise)
 
   const searchSelected = document.querySelector(".filterSelected");
   if (searchSelected !== null) {
@@ -220,7 +218,6 @@ const renderModels = (allModels) => {
   let models;
   models = document.querySelector(".shirtArea");
   arrayModels = allModels.data;
-  console.log(arrayModels)
   models.innerHTML = "";
   for (let i = 0; i < arrayModels.length; i++) {
     models.innerHTML += `
@@ -322,11 +319,29 @@ const filterLong = (tShirts) => {
 };
 
 const readyProduct = (material, neck, model, image, author) => {
-  console.log(material)
-  console.log(neck)
-  console.log(image)
-  console.log(model)
-  console.log(author)
-}
+  let answer = confirm("Deseja confirmar o pedido desse modelo?");
+  if (answer === true) {
+    let body = {
+      model: model,
+      neck: neck,
+      material: material,
+      image: image,
+      owner: user,
+      author: author,
+    };
+    sendReadyPromise(body);
+  } else {
+    alert("Pedido cancelado");
+  }
+};
+
+const sendReadyPromise = (body) => {
+  const promise = axios.post(
+    "https://mock-api.driven.com.br/api/v4/shirts-api/shirts",
+    body
+  );
+  promise.then(alert("Pedido feito com sucesso!"), getPromise());
+  promise.catch("Algo deu errado!");
+};
 showUser();
 getPromise();
