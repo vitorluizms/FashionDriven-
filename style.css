@@ -311,6 +311,7 @@ left: 122px;
     min-width: 216px;
     height: 100%;
 
+    border: none;
     margin-right: 17px;
     border-radius: 10px;
     padding-left: 11px;
@@ -346,7 +347,7 @@ left: 122px;
     background-color: #404eed;
 }
 
-.successContent {
+.successContent, .errorContent {
     width: 435px;
     height: 634px;
     margin-top: 74px;
@@ -357,18 +358,18 @@ left: 122px;
     align-items: space-between;
     justify-content: center;
 }
-.successContent h5 {
+.successContent, .errorContent h5 {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 36px;
     line-height: 42px;
     text-align: center;
 }
-.successContent img {
+.successContent, .errorContent img {
     width: 435px;
     height: 523px;
 }
-.successContent h6 {
+.successContent, .errorContent h6 {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 20px;
